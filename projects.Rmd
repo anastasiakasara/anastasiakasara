@@ -1,0 +1,31 @@
+---
+title: "Projects"
+---
+[//]: # (Comment)
+
+To be added...
+
+## [Data Visualization in R](http://nickstrayer.me/visualization_in_r/)
+
+- An RMarkdown presentation on the common mistakes made in visualization and how to fix them.
+- Includes a github repo for access to all the code.
+- Look at how high quality my work is, hire and or collaborate with me. 
+
+## [Statistical Plots](http://bl.ocks.org/nstrayer/37a503dd1db369a8f7e3ce21757e19ee)
+
+- Interactive plots of things
+- I can code!
+
+
+##[Notes on Maxima]
+
+- real/int: Number simplifications: radsim(9)
+- complex: demoivre, exponentialize,
+- expressions manipulations: expand, (expand) factor (compact), expandwrt (expand relative to one variable)
+  radcan, scsim
+- expressions evaluations: numer (evaluate), pred (evaluate predications)
+  %i> cos(1), numer;
+  %i> 1+2 > 9, pred;
+- summations:  simpsum
+  %i> simpsum: true$
+  %i> sum(a*i,i,1,N)

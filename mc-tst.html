@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Anastasia Kasara" />
+
+<meta name="date" content="2018-03-15" />
+
+<title>CA1: Advanced analytics</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Anastasia Kasara</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">Personal Info</a>
+</li>
+<li>
+  <a href="projects.html">DBS Projects</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">CA1: Advanced analytics</h1>
+<h4 class="author"><em>Anastasia Kasara</em></h4>
+<h4 class="date"><em>15 March 2018</em></h4>
+
+</div>
+
+
+<div id="question-1" class="section level2">
+<h2>Question 1</h2>
+</div>
+<div id="a" class="section level2">
+<h2>(1a)</h2>
+<p>The probability model corresponding for each agent is shown in table</p>
+<ul>
+<li>Agent 1: Poisson, defined with one parameter (average number of customers <span class="math inline">\(\lambda\)</span>): <span class="math display">\[
+P(\lambda,t) = \frac{\lambda t}{k!} e^{-\lambda t} 
+\]</span></li>
+<li>Agent 2: Exponential, defined with one parameter (average service rate <span class="math inline">\(r\)</span>) <span class="math display">\[
+E(\lambda,t) = \lambda e^{-\lambda t} 
+\]</span></li>
+<li>Agent 3: Binomial, defined with 3 parametes: <span class="math inline">\(n\)</span> the sample size, <span class="math inline">\(p\)</span> the probability of succes and <span class="math inline">\(k\)</span> the number of outcomes. <span class="math display">\[
+B(j,n,p) = \frac{n!}{j!(n-j)!} p^j(1-p)^{n-j}
+\]</span></li>
+</ul>
+</div>
+<div id="b" class="section level2">
+<h2>(1b)</h2>
+<p>The probability, that the third agent will report more than 2 customers purchased the product, is calculated as below. Since in the present case the probability model is binomial, with <span class="math inline">\(p=0.4\)</span> to buy the product and <span class="math inline">\(n\)</span> the sample size (number of customers in the sell zone), then to have 3 or more successes we need to sum up all the probabilities for <span class="math inline">\(j=3,4,..,20\)</span>:<br />
+<span class="math display">\[
+P(j&gt;2,n,p) = \sum_{j=3}^{n} p_b(j,n,p) =  1 - \sum_{j=0}^{2} p_b(j,n,p)
+\]</span> where <span class="math inline">\(p_b(j,n,q)\)</span> represents the binomial probability. For the summations the ‘dbinom’ function is utilized:</p>
+<pre class="r"><code># (question 1b)
+p=.4         # probability for product purchase
+n=20         # number of customers
+# probability for more than 2 reports
+p2 = 1-pbinom(2,n,p)   #</code></pre>
+</div>
+<div id="c" class="section level2">
+<h2>(1c)</h2>
+<p>In the below 100 samples are generated from each of the above models (Poisson, Exponential, Binomial). We need to specify the corresponding parameters each time. So we set, <span class="math display">\[
+\lambda =1\; (Poisson), \qquad r = 1\; (Exponential), \qquad n=30,\;p=0.4\; (Binomial)
+\]</span></p>
+<pre class="r"><code>s.poisson &lt;- rpois(n=100, lambda = 1)  # 100 samples of a1 (Poisson)
+s.exp     &lt;-  rexp(n=100, rate = 1)  # 100 samples of a2 (exponential)
+# 100 samples of a3 (binom), number of customer = 30
+s.binom   &lt;-rbinom(n=100, size=30, p = 0.4) </code></pre>
+</div>
+<div id="d" class="section level2">
+<h2>(1d)</h2>
+<p>– agent 1: Poisson, histogram plot and summary</p>
+<pre class="r"><code>hist(s.poisson, xlab=&quot;Number of Customers per hour&quot;, col = &quot;blue&quot;, main=&quot;Agent 1: Poisson Histogram, lambda = 1&quot;    ) # histogram</code></pre>
+<p><img src="mc-tst_files/figure-html/question%201d-1.png" width="672" /></p>
+<pre class="r"><code>summ.poisson &lt;- summary(s.poisson)  # summary
+var.poisson  &lt;- var(s.poisson)      # variance
+print(summ.poisson)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    0.00    0.00    1.00    0.88    1.00    4.00</code></pre>
+<pre class="r"><code>print(var.poisson)</code></pre>
+<pre><code>## [1] 0.7531313</code></pre>
+<p>– Agent 2: Exponential, histogram plot and summary</p>
+<pre class="r"><code># agent 2: exponential, histogram, summary and var
+hist(s.exp,   xlab=&quot;Service time&quot;, col = &quot;blue&quot;,  main=&quot;Agent 2: Exponential Histogram, lambda = 1&quot;)             # histogram  </code></pre>
+<p><img src="mc-tst_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>summ.exp &lt;- summary(s.exp)          # summary
+var.exp  &lt;- var(s.exp)              # variance
+print(summ.exp)</code></pre>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## 0.000283 0.378035 0.715977 1.191061 1.617840 9.101306</code></pre>
+<pre class="r"><code>print(var.exp)</code></pre>
+<pre><code>## [1] 1.883582</code></pre>
+<p>– Agent 3: Binomial, histogram plot and summary</p>
+<pre class="r"><code># agent 3: binom, histogram and summary
+hist(s.binom,  xlab=&quot;Number of purchases&quot;, col = &quot;blue&quot;,  main=&quot;Agent 3: Exponential Histogram, lambda = 1&quot;)          # histogram</code></pre>
+<p><img src="mc-tst_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>summ.binom &lt;- summary(s.binom)      # summary
+print(summ.binom)                   # variance</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    5.00   10.00   12.00   11.82   14.00   19.00</code></pre>
+</div>
+<div id="question-2" class="section level2">
+<h2>Question 2</h2>
+</div>
+<div id="a-1" class="section level2">
+<h2>(2a)</h2>
+<p>Assuming that the sensor’s security probability model is the Beta function, <span class="math inline">\(B(a,b)=B(4,8)\)</span> the the expectation value, (<span class="math inline">\(E\)</span>) and the variance, (<span class="math inline">\(V\)</span>) are given by, <span class="math display">\[
+E= \frac{a}{a+b} = \frac{4}{8+4} = 1/3, \qquad V=\frac{ab}{(a+b)^2(a+b+1)} =...=\frac{2}{117}
+\]</span> Next I take as probability failure for each individual sensor the expectation value, <span class="math inline">\(p=1/3\)</span>. For the given 4 sensors, complete failure exists only when the 3 or 4 sensors fail. So the probability for <span class="math inline">\(j&gt;2\)</span> failures should be calculated. The probability for each sensor is binomial, therefore, <span class="math display">\[
+p(j&gt;2) = \sum_{j=3,4} p_b(j,4,p) = 1 - \sum_{j=0,1,2} p_b(j,4,p), \qquad p=1/3.
+\]</span> The last summation is performed by using ‘pbinom’ from the R. Below is the corresponding code.</p>
+<pre class="r"><code>##############################
+# 
+# Beta distribution with a = 4, b=8, Beta(4,8)
+
+
+# question (2a)
+a&lt;-4
+b&lt;-8
+E&lt;-a/(a+b)                        #  E = 1/3
+varhat&lt;-a*b/((a+b)^2*(a+b+1))     #  V = 2/117
+print(E)</code></pre>
+<pre><code>## [1] 0.3333333</code></pre>
+<pre class="r"><code>print(varhat)</code></pre>
+<pre><code>## [1] 0.01709402</code></pre>
+<pre class="r"><code>#####
+# from the n = 4 sensors at least k = 2 are secured 
+# probability for each individual sensor p = E
+n&lt;-4                    # number of sensors
+p&lt;-1/3                  # expectation of beta(4,8)
+y&lt;-1-pbinom(2,n,p)      # probability that at ;east 2 are secured
+print(y)</code></pre>
+<pre><code>## [1] 0.1111111</code></pre>
+</div>
+<div id="b-c" class="section level2">
+<h2>(2(b-c))</h2>
+<p>In the below 25 samples for each sensor are generated using the ‘rbinom’ function. After calculating the mean value of each of the random samples the preferred sensor in terms of security is the one with smaller variance. The behaviour of this sensor is more ‘predictable’ than the others as it will vary less around it’s mean value probability (being chosen to be <span class="math inline">\(p=1/3\)</span>). The R code where the random samples are generated are shown below.</p>
+<pre class="r"><code># question (2b)
+s &lt;- 1
+n &lt;- 25
+p&lt;- 1/3 
+
+
+b1 &lt;-rbinom(n,s,p)      # sensor 1
+b2 &lt;-rbinom(n,s,p)      # sensor 2
+b3 &lt;-rbinom(n,s,p)      # sensor 3
+b4 &lt;-rbinom(n,s,p)      # sensor 4
+
+mn1 &lt;- mean(b1) 
+vr1 &lt;-  var(b1)
+print(mn1)</code></pre>
+<pre><code>## [1] 0.36</code></pre>
+<pre class="r"><code>print(vr1)</code></pre>
+<pre><code>## [1] 0.24</code></pre>
+<pre class="r"><code>#
+mn2 &lt;- mean(b2)
+vr2 &lt;-  var(b2)
+print(mn1)</code></pre>
+<pre><code>## [1] 0.36</code></pre>
+<pre class="r"><code>print(vr1)</code></pre>
+<pre><code>## [1] 0.24</code></pre>
+<pre class="r"><code>#
+mn3 &lt;- mean(b3)
+vr3 &lt;-  var(b3)
+print(mn3)</code></pre>
+<pre><code>## [1] 0.28</code></pre>
+<pre class="r"><code>print(vr3)</code></pre>
+<pre><code>## [1] 0.21</code></pre>
+<pre class="r"><code>#
+mn4 &lt;- mean(b4)
+vr4 &lt;-  var(b4)
+print(mn4)</code></pre>
+<pre><code>## [1] 0.4</code></pre>
+<pre class="r"><code>print(vr4)</code></pre>
+<pre><code>## [1] 0.25</code></pre>
+<pre class="r"><code>#
+
+
+
+# (d)
+par(mfrow=c(1,2))
+
+
+plot</code></pre>
+<pre><code>## function (x, y, ...) 
+## UseMethod(&quot;plot&quot;)
+## &lt;bytecode: 0x3bc1888&gt;
+## &lt;environment: namespace:graphics&gt;</code></pre>
+<pre class="r"><code>x=seq(0,1.5,length=100)
+yd=dbeta(x,4,8)
+plot(x,yd, type=&quot;l&quot;, col=&quot;blue&quot;,xlab=&quot;x&quot;, ylim=c(0,4), main=&quot;PDF Beta(4,8)&quot; )</code></pre>
+<p><img src="mc-tst_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Below is the plot for the CDF of the beta distribution:</p>
+<pre class="r"><code>x=seq(0,1.5,length=100)
+yp=pbeta(x,4,8)
+plot(x,yp, type=&quot;l&quot;, col=&quot;red&quot;,xlab=&quot;x&quot;, ylim=c(0,2), main=&quot;CDF Beta(4,8)&quot; )</code></pre>
+<p><img src="mc-tst_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="question-3" class="section level2">
+<h2>Question 3</h2>
+<p>Here we need to use the Normal distribution The below is known as the density of the normal distribution, <span class="math inline">\(N(\mu,\sigma)\)</span>. :</p>
+<p><span class="math display">\[ f(x|\mu,\sigma) = \frac{1}{\sqrt{2\pi\sigma}} e^{ -\frac{(x-\mu)^2}{2\sigma^2}} \]</span></p>
+<p>The probability is given by integrating the above probability density from <span class="math inline">\(x=500\)</span> to infinity: <span class="math display">\[
+p(x&gt;500) = \int_{500}^{\infty} dx f(x)
+\]</span> This can be achieved by recalling the ‘pnorm’ R function as below:</p>
+<pre class="r"><code># Normal distribution N(527,112)  mean = 527, std = 112
+mu&lt;-527
+sigma&lt;-112
+p1&lt;-1-pnorm(500,mu,sigma)   # probability to score above 500
+print(p1)</code></pre>
+<pre><code>## [1] 0.5952501</code></pre>
+</div>
+<div id="a-2" class="section level2">
+<h2>(3a)</h2>
+<p>Next we generate 4 plots with different means but same standard variance. The chosen means are <span class="math inline">\(\mu =6,9,12\)</span> and 15. As standard deviation the value <span class="math inline">\(\sigma=1.5\)</span> was chosen.</p>
+<pre class="r"><code># question (3a) plot
+
+x   &lt;- seq(0,25,length=2000)
+y6  &lt;- dnorm(x,mean=6,  sd=1.5)
+y9  &lt;- dnorm(x,mean=9,  sd=1.5)
+y12 &lt;- dnorm(x,mean=12, sd=1.5)
+y15 &lt;- dnorm(x,mean=15, sd=1.5)
+
+plot( x,y6,type=&quot;l&quot;, xlab=&quot;x&quot;, col=&quot;black&quot;)
+lines(x,y9,type=&quot;l&quot;, xlab=&quot;x&quot;,col=&quot;red&quot;  )
+lines(x,y12,type=&quot;l&quot;, xlab=&quot;x&quot;,col=&quot;green&quot;)
+lines(x,y15,type=&quot;l&quot;, xlab=&quot;x&quot;,col=&quot;blue&quot; )</code></pre>
+<p><img src="mc-tst_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="b-1" class="section level2">
+<h2>(3b)</h2>
+<p>The probability for an individual scoring between <span class="math inline">\(x_1=400\)</span> and <span class="math inline">\(x_2 = 500\)</span> is given by, <span class="math display">\[
+p(400&lt;x&lt;500) = \int_{400}^{500} dx f(x) = \int_{0}^{500} dx f(x) - \int_{0}^{400} dx f(x)
+\]</span> Similarly, for the above the ‘pnorm’ function can be used as below.</p>
+<pre class="r"><code># question (3b) 
+# probability for GMAT score between 400 and 500
+p2 = pnorm(500,mu,sigma) - pnorm(400,mu,sigma)
+p2</code></pre>
+<pre><code>## [1] 0.2763376</code></pre>
+</div>
+<div id="question-4" class="section level2">
+<h2>Question 4</h2>
+<p>The proper probability model for the present case is the multinomial probability for 4 different outcomes of equal probability, so that <span class="math inline">\(p_1=p_2=p_3=p_4=1/4\)</span>. The expression for the multinomial probability is.</p>
+<p><span class="math display">\[
+p_m(x_1,x_2,x_3,x_4,p_1,p_2,p_3,p_4) = \frac{n!}{x_1!x_2!x_3!x_4!}p_1^{x_1} p_2^{x_2}p_3^{x_3}p_4^{x_4},
+\qquad \sum_{i=1,4} x_i = n, \qquad \sum_{i=1,4}p_i = 1
+\]</span></p>
+</div>
+<div id="a-3" class="section level2">
+<h2>(4a)</h2>
+<p>From a sample of size <span class="math inline">\(n=10\)</span> we require <span class="math inline">\(x_1=9\)</span> successes for the first feature (with probability <span class="math inline">\(p_1=1/4\)</span>) and anything else. So, the other 3 features have probability <span class="math inline">\(1-p_1=3/4\)</span>. We can then use the binomial probability with <span class="math inline">\(n=10\)</span>, <span class="math inline">\(k=9\)</span> and <span class="math inline">\(p_1=1/4\)</span>, to obtain: <span class="math display">\[
+p(x_1=9,10,1/4) = \frac{10!}{9!1!}(\frac{1}{4})^9 (\frac{3}{4})^1 = 3\times 10(\frac{1}{4})^{10}=2.861023\times10^{-5} &lt;&lt; 1
+\]</span> This is a very small probability. The relevant code is below:</p>
+<pre class="r"><code>p1&lt;- 1/4
+n &lt;- 10
+xi&lt;- 9
+p1&lt;-dbinom(xi,n,p1)
+print(p1)</code></pre>
+<pre><code>## [1] 2.861023e-05</code></pre>
+</div>
+<div id="b-2" class="section level2">
+<h2>(4b)</h2>
+<p>The correlation betweem the features ‘1’ and ‘2’ may be found from the following relation: The correlation between two random variables <span class="math inline">\(x_1,x_2\)</span> is defined as, <span class="math display">\[
+\rho_{12} = \frac{C_{12}}{\sqrt{V_1}\sqrt{V_2}}
+\]</span> where <span class="math inline">\(V_1,V_1\)</span> are the corresponding  and <span class="math inline">\(C_{12}\)</span> is the . But for the multinomial distribution: <span class="math display">\[
+C_{12} = -np_1p_2 = n, \qquad V_i = np_i(1-p_i), \qquad i=1,2
+\]</span> The above formulas are calculated as below (<span class="math inline">\(p_1=p_2=p=1/4\)</span>) and <span class="math inline">\(n=4\)</span>: <!-- $V_2  = p_2(1-p_2) = 10 \times 0.2 \times (1-0.2) = 1.6 $ --> <!-- $V_3  = 10p_3(1-p_3) = 10 \times 0.5 \times (1-0.5) = 2.5   --> <!-- $C_{23} = -10 p_2 p_3 = -10 \times 0.2 \times 0.5   = -1$ --> <!-- $\rho_{23}  = \frac{-1}{\sqrt{1.6}\sqrt{2.5}}$ = -0.5 --></p>
+<pre class="r"><code>n&lt;-4
+p&lt;-1/4
+c12 &lt;- -n*p*p
+v1 &lt;- n*p*(1-p)
+v2 &lt;- n*p*(1-p)
+r12 &lt;-c12/(sqrt(v1*v2))
+print(r12)</code></pre>
+<pre><code>## [1] -0.3333333</code></pre>
+</div>
+<div id="simulation" class="section level2">
+<h2>Simulation</h2>
+<p>Simulating 100 samples to find numerically the expected correlation. For this the use of ‘rmultinom’ provides the sample random vectors with probabilities distributed according the <span class="math inline">\(p_1=p_2=p_3=p_4=1/4\)</span>. The size of the sample is <span class="math inline">\(s=10\)</span> and <span class="math inline">\(n=100\)</span>. After we have generated the samples a matrix <span class="math inline">\(4 \times 100\)</span> is created. The rows of length (<span class="math inline">\(4\)</span>) contains the distributions over the 4 features while the columns of length (<span class="math inline">\(n\)</span>) are the different samples. As it is more natural to have the samples as rows and the features as columns, I take the transpose of the generated matrix. To calculate the correlation between the features <span class="math inline">\(&#39;1&#39;\)</span> and <span class="math inline">\(&#39;2&#39;\)</span> the corresponding probabilities are needed ‘p1’ and ‘p2’. For this I first calculate the frequencies for each row as: <span class="math display">\[
+f_{1j} =\frac{r_{1j}}{s}, \quad f_{2j} = \frac{r_{2j}}{s}, \qquad j=1,2,..,n=100, \qquad s=10
+\]</span> and then average over the samples to find the mean probabilities: <span class="math display">\[
+p_1 = \frac{\sum_{j=1}^{n} f_{1j}}{n}, \qquad p_2 = \frac{\sum_{j=1}^{n} f_{2j}}{n}, \qquad n=100
+\]</span></p>
+<pre class="r"><code># simulation for 100 samples.
+
+pm = c(1/4,1/4,1/4,1/4)
+size = 10
+samples =100
+# assume the number of rows in each feature to be n=20
+s.multi = rmultinom(samples,size,pm)
+hist(s.multi, xlab=&quot;sample&quot;, col = &quot;blue&quot;, main=&quot;Multinomial random distribution&quot;    ) # histogram</code></pre>
+<p><img src="mc-tst_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<pre class="r"><code># set as rows the samples (100) and as column the features (4)
+ts.multi&lt;-t(s.multi) # transpose
+#
+table(ts.multi)</code></pre>
+<pre><code>## ts.multi
+##   0   1   2   3   4   5   6 
+##  18  69 116 113  61  22   1</code></pre>
+<pre class="r"><code>#View(ts.multi)
+#print(t)
+
+# First we find the frequencies for each sample (sample =100):
+f1 &lt;- ts.multi[,1]/size   # size of f1 should be 100
+f2 &lt;- ts.multi[,2]/size   # size of f2 should be 100
+# then we take the average over the samples (100)
+w1 &lt;- mean(f1)
+w2 &lt;- mean(f2)
+
+
+#pp&lt;-c(0.1,0.6,0.3)
+#n&lt;-10
+#k&lt;-200
+#print(rmultinom(10,k,pp))</code></pre>
+<p>Having calculated the probabilities the calculation of the correlation of <span class="math inline">\(\rho_{12}\)</span> follows, according the expressions above in the text.</p>
+<pre class="r"><code>c12 &lt;- -n*w1*w2           #  1-2 
+
+v11  &lt;- n*w1*(1-w1)       # variance of 1
+v22  &lt;- n*w2*(1-w2)       # variance of 2
+r12 &lt;- c12/sqrt(v11*v22)  # correlation of 1-2
+print(r12)</code></pre>
+<pre><code>## [1] -0.3437525</code></pre>
+<p>Note that the model calculated value for the correlation coefficient was <span class="math inline">\(\rho_{12}=-0.333\)</span> to be compared with the numerical above.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

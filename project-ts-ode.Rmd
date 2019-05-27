@@ -1,0 +1,46 @@
+---
+title: 'Forecasting Time Series modeled as Brownian Motion'
+author: "Anastasia Kasara"
+date: "April 2018"
+output:
+  pdf_document: default
+  word_document: default
+---
+
+
+
+Description
+----------
+
+## First-order autoregressive model
+
+The main subject of the current project is the modeling of time-series data by assuming a model of the following type:  
+$$
+y_k = a_0 + a_1 t_k + W(t_k) 
+$$
+where $a_0,a_1$ are deterministic parameters and $\epsilon(t)$ represents a normally distributed variable with mean value zero, $\mu_w=0$ and variance, $\sigma_k = \sigma^2 t_k$.
+The above model is known as **geometric brownian model** (GBM) with applications 
+in a diverse range of domains, eg. physics, economics, biology, environmental, etc..
+This model was first developed as a physical model (Einstein 1905) for the explanation of the observed irregular motion of particles (Brown ). The rationale behind this model can be found if the above model rewriten as 
+$$
+dy(t) = a_1 dt + \sigma dW(t) 
+$$
+where, $dy = y_{k+1}-y_k$, $dt = t_{k+1}-t_k$ and $dW(t) = W(t_{k+1}-t_k)$. 
+In principle the above equation says that the change of the modeled quantity, $y(t)$, between $t_k$ and $t_{k+1}$ is due to a deterministic bias ($a_1dt$), proportional to the the time elapsed, and by a random amount $\sigma dW(t)$. The random increments $dW(t)$ have the following properties:
+
+- the increments are independent each other
+- $dW(t) \sim N(0,dt)$
+
+with $N(\mu,\sigma)$, being the normal distribution:
+
+$$ f(x|\mu,\sigma) = \frac{1}{\sqrt{2\pi\sigma}} e^{ -\frac{(x-\mu)^2}{2\sigma^2}} $$
+
+
+
+
+
+
+
+
+
+

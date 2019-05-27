@@ -1,0 +1,16 @@
+name: "LAAN25FEB2018"
+output_dir: "."
+navbar:
+  title: "Anastasia Kasara"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Personal Info"
+      href: about.html
+    - text: "DBS Projects" ##### 
+      href: projects.html  ##### 
+      
+output:
+  html_document:
+    theme: flatly
+    css: style.css
